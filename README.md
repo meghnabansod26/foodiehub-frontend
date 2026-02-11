@@ -1,16 +1,69 @@
-# React + Vite
+# 🍔 FoodieHub – Frontend (User Application)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Project Overview
 
-Currently, two official plugins are available:
+FoodieHub is a full-stack food delivery platform.  
+This repository contains the **User Frontend Application** built using React.js.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The frontend communicates with the Spring Boot backend APIs to provide a seamless food ordering experience with secure authentication and online payment integration.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- React.js
+- React Router
+- Axios
+- Context API (State Management)
+- CSS / Bootstrap
+- JWT Authentication
+- Razorpay Payment Integration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## ✨ Key Features
+
+### 👤 User Functionalities
+
+- User Registration & Login
+- JWT-based Authentication
+- Browse Food Items
+- Search & Filter Items
+- Add to Cart
+- Remove from Cart
+- Place Orders
+- Secure Online Payment (Razorpay)
+- View Order History
+- Responsive UI Design
+
+
+## 🔐 Authentication Flow
+
+- User logs in and receives JWT token
+- Token is stored securely
+- Token is sent in Authorization header for protected API calls
+
+
+## 🔗 Backend Integration
+
+This frontend connects to the Spring Boot backend API for:
+
+- User Authentication
+- Product Management
+- Cart Operations
+- Order Processing
+- Payment Verification
+
+
+## 🏗️ Application Flow
+
+User → React Frontend  
+        ↓  
+Spring Boot Backend API  
+        ↓  
+MongoDB Database  
+
+
+## ▶️ Run Locally
+
+1. Clone the repository  
+2. Install dependencies:
+
