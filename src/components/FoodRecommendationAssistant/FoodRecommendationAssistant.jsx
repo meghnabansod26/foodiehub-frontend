@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { StoreContext } from "../../context/StoreContext";
 import "./FoodRecommendationAssistant.css";
 
-const API_URL = "http://localhost:8080";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const QUICK_PROMPTS = [
   {
