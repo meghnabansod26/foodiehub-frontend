@@ -1,0 +1,736 @@
+
+/* Floating widget */
+.food-ai-widget {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  z-index: 99999;
+  font-family: inherit;
+}
+
+/* Floating Ask AI button */
+.food-ai-launcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff794b, #e94e2f);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(225, 78, 42, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.food-ai-launcher:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(225, 78, 42, 0.38);
+}
+
+.food-ai-launcher > span:first-child {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.food-ai-launcher-open {
+  width: 50px;
+  min-height: 50px;
+  padding: 0;
+  font-size: 25px;
+}
+
+/* Chat panel */
+.food-ai-panel {
+  position: absolute;
+  right: 0;
+  bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  height: min(720px, calc(100dvh - 125px));
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #f0e5dc;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 22px 70px rgba(45, 29, 20, 0.2);
+  animation: food-ai-appear 0.22s ease-out;
+}
+
+@keyframes food-ai-appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Header */
+.food-ai-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+  min-height: 76px;
+  padding: 14px 16px;
+  background: linear-gradient(120deg, #fff7f1, #ffffff);
+  border-bottom: 1px solid #f2e7df;
+}
+
+.food-ai-header-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffeadb, #fff2e9);
+  font-size: 22px;
+}
+
+.food-ai-header-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.food-ai-header-info h3 {
+  margin: 0 0 5px;
+  color: #30231d;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.food-ai-header-info p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: #82746c;
+  font-size: 10px;
+}
+
+.food-ai-online-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #27b875;
+  box-shadow: 0 0 0 3px #e4f8ed;
+}
+
+.food-ai-powered {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #ffebe0;
+  color: #c74b2a;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+}
+
+.food-ai-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 29px;
+  height: 29px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #f5eee9;
+  color: #65564d;
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.food-ai-close:hover {
+  background: #f1ded2;
+}
+
+/* Premium welcome screen */
+.food-ai-welcome {
+  position: relative;
+  flex-shrink: 0;
+  padding: 22px 20px 18px;
+  overflow: hidden;
+  background: linear-gradient(140deg, #fff7f0, #fffdfb 75%);
+  border-bottom: 1px solid #f4e9e0;
+}
+
+.food-ai-eyebrow,
+.food-ai-discover-title {
+  color: #d65a35;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.food-ai-welcome h2 {
+  max-width: 300px;
+  margin: 10px 0 8px;
+  color: #30231d;
+  font-size: 23px;
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+}
+
+.food-ai-welcome > p {
+  max-width: 300px;
+  margin: 0;
+  color: #80736c;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.food-ai-welcome-art {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 7px;
+  margin-top: 15px;
+}
+
+.food-ai-welcome-art span {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border: 1px solid #f3e2d5;
+  border-radius: 15px;
+  background: white;
+  box-shadow: 0 5px 14px #a85c3010;
+  font-size: 22px;
+}
+
+/* Entire scrollable content area */
+.food-ai-scroll-content {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  background: #fff;
+
+  /* Hide scrollbar in Firefox and older Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar in Chrome and Safari */
+.food-ai-scroll-content::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Chat area */
+.food-ai-chat-body {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 16px;
+  min-height: auto;
+  padding: 18px 14px;
+  overflow: visible;
+  overscroll-behavior: auto;
+  background: #fff;
+}
+
+.food-ai-message {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  width: 100%;
+}
+
+.food-ai-user-message {
+  justify-content: flex-end;
+}
+
+.food-ai-assistant-message {
+  justify-content: flex-start;
+}
+
+.food-ai-message-content {
+  min-width: 0;
+  max-width: calc(100% - 37px);
+}
+
+.food-ai-assistant-message .food-ai-message-content {
+  width: 100%;
+}
+
+.food-ai-user-message .food-ai-message-content {
+  max-width: 85%;
+}
+
+.food-ai-avatar {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background: #ffede3;
+  color: #dc5934;
+  font-size: 16px;
+}
+
+.food-ai-bubble {
+  padding: 12px 14px;
+  border-radius: 4px 15px 15px 15px;
+  background: #f8f3ef;
+  color: #493b33;
+  font-size: 12px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+
+.food-ai-bubble p {
+  margin: 0 0 8px;
+}
+
+.food-ai-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.food-ai-bubble ul,
+.food-ai-bubble ol {
+  padding-left: 19px;
+  margin: 8px 0;
+}
+
+.food-ai-bubble li {
+  margin: 4px 0;
+}
+
+.food-ai-bubble strong {
+  color: #34251e;
+}
+
+.food-ai-user-message .food-ai-bubble {
+  border-radius: 15px 4px 15px 15px;
+  background: #ed5b35;
+  color: #fff;
+}
+
+.food-ai-user-message .food-ai-bubble strong {
+  color: #fff;
+}
+
+.food-ai-error {
+  background: #fff0ee;
+  color: #b42318;
+  border: 1px solid #fbd2ce;
+}
+
+.food-ai-text-response {
+  margin-top: 12px;
+  background: #fffaf6;
+  border: 1px solid #f3e8df;
+}
+
+/* Recommended menu results */
+.food-ai-result-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 13px;
+}
+
+.food-ai-result-heading > span {
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 37px;
+  border-radius: 12px;
+  background: #fff0e6;
+  font-size: 19px;
+}
+
+.food-ai-result-heading strong {
+  color: #30231d;
+  font-size: 14px;
+}
+
+.food-ai-result-heading p {
+  margin: 3px 0 0;
+  color: #8b7e76;
+  font-size: 11px;
+}
+
+.food-ai-food-list {
+  display: grid;
+  gap: 12px;
+}
+
+.food-ai-food-card {
+  overflow: hidden;
+  border: 1px solid #f0e5dc;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(65, 42, 26, 0.045);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.food-ai-food-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px rgba(65, 42, 26, 0.09);
+}
+
+.food-ai-food-image-link {
+  display: block;
+  height: 145px;
+  overflow: hidden;
+  background: #fff5ed;
+  text-decoration: none;
+}
+
+.food-ai-food-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.food-ai-food-card:hover .food-ai-food-image {
+  transform: scale(1.035);
+}
+
+.food-ai-food-placeholder {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-size: 42px;
+}
+
+.food-ai-food-info {
+  padding: 12px 13px 13px;
+}
+
+.food-ai-food-info h4 {
+  margin: 0 0 5px;
+  color: #30231d;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 750;
+}
+
+.food-ai-food-info > p {
+  display: -webkit-box;
+  margin: 0 0 12px;
+  overflow: hidden;
+  color: #82766e;
+  font-size: 11px;
+  line-height: 1.6;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.food-ai-food-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.food-ai-food-bottom > strong {
+  color: #d94f2c;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.food-ai-view-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 11px;
+  border-radius: 9px;
+  background: #ed5b35;
+  color: #fff !important;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.food-ai-view-button:hover {
+  background: #d94b27;
+  color: #fff;
+}
+
+.food-ai-result-note {
+  margin: 11px 0 0;
+  color: #94877e;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* Quick prompts */
+.food-ai-discover {
+  flex-shrink: 0;
+  padding: 14px 16px;
+  border-top: 1px solid #f2e8e1;
+  background: #fffdfb;
+}
+
+.food-ai-discover-title {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 9px;
+}
+
+.food-ai-quick-prompts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.food-ai-quick-prompts button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 11px;
+  border: 1px solid #f0e3d9;
+  border-radius: 12px;
+  background: #fff;
+  color: #48352b;
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.food-ai-quick-prompts button:hover:not(:disabled) {
+  border-color: #f2b49d;
+  background: #fff7f2;
+}
+
+.food-ai-quick-prompts button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.food-ai-prompt-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 29px;
+  height: 29px;
+  border-radius: 9px;
+  background: #fff0e6;
+  font-size: 16px;
+}
+
+.food-ai-prompt-arrow {
+  margin-left: auto;
+  color: #d65a35;
+  font-size: 16px;
+}
+
+/* Message input */
+.food-ai-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 9px;
+  flex-shrink: 0;
+  padding: 12px 13px;
+  border-top: 1px solid #f0e6df;
+  background: #fff;
+}
+
+.food-ai-form textarea {
+  flex: 1;
+  min-width: 0;
+  min-height: 43px;
+  max-height: 110px;
+  padding: 12px;
+  resize: vertical;
+  border: 1px solid #eadfd7;
+  border-radius: 13px;
+  outline: none;
+  background: #fffdfa;
+  color: #3f3028;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.food-ai-form textarea::placeholder {
+  color: #a89a90;
+}
+
+.food-ai-form textarea:focus {
+  border-color: #ed8b6e;
+  box-shadow: 0 0 0 3px rgba(237, 91, 53, 0.08);
+}
+
+.food-ai-form textarea:disabled {
+  opacity: 0.65;
+}
+
+.food-ai-form > button {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 43px;
+  height: 43px;
+  border: none;
+  border-radius: 13px;
+  background: #ed5b35;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.food-ai-form > button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #d94b27;
+}
+
+.food-ai-form > button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Loading indicator */
+.food-ai-loading {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #79685e;
+}
+
+.food-ai-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  flex-shrink: 0;
+  vertical-align: -2px;
+  border: 2px solid #f0c9b9;
+  border-top-color: #e75a34;
+  border-radius: 50%;
+  animation: food-ai-spin 0.7s linear infinite;
+}
+
+@keyframes food-ai-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Footer */
+.food-ai-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 0 14px 11px;
+  background: #fff;
+}
+
+.food-ai-footer p {
+  margin: 0;
+  color: #a0958c;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.food-ai-reset {
+  flex-shrink: 0;
+  padding: 6px 8px;
+  border: 1px solid #f0ded2;
+  border-radius: 8px;
+  background: #fff7f2;
+  color: #c74b2a;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.food-ai-reset:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tablet and mobile */
+@media (max-width: 600px) {
+  .food-ai-widget {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .food-ai-panel {
+    position: fixed;
+    inset: 8px;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    border-radius: 20px;
+  }
+
+  .food-ai-launcher {
+    min-height: 49px;
+    padding: 0 17px;
+  }
+
+  .food-ai-launcher-open {
+    width: 47px;
+    min-height: 47px;
+    padding: 0;
+  }
+
+  .food-ai-powered {
+    display: none;
+  }
+
+  .food-ai-welcome {
+    padding: 17px 15px 14px;
+  }
+
+  .food-ai-welcome h2 {
+    font-size: 21px;
+  }
+
+  .food-ai-food-image-link {
+    height: 125px;
+  }
+
+  .food-ai-scroll-content {
+    flex: 1 1 0;
+    min-height: 0;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .food-ai-panel,
+  .food-ai-spinner,
+  .food-ai-launcher,
+  .food-ai-food-card,
+  .food-ai-food-image {
+    animation: none;
+    transition: none;
+  }
+}

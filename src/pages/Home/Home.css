@@ -1,0 +1,58 @@
+
+.home-page {
+  min-height: 100vh;
+  background: #fffaf7;
+  color: #242424;
+  padding: 24px 0 60px;
+}
+
+.home-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+.home-menu-section {
+  margin-top: 34px;
+  padding: 24px 0;
+}
+
+.home-food-section {
+  margin-top: 18px;
+  padding-bottom: 30px;
+}
+
+/* Smooth transitions for interactive elements */
+.home-page button,
+.home-page a {
+  transition: all 0.25s ease;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .home-page {
+    padding-top: 14px;
+  }
+
+  .home-container {
+    width: 94%;
+  }
+
+  .home-menu-section {
+    margin-top: 22px;
+    padding: 16px 0;
+  }
+
+  .home-food-section {
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-page {
+    padding-bottom: 35px;
+  }
+
+  .home-menu-section {
+    margin-top: 16px;
+  }
+}

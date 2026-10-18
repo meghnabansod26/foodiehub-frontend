@@ -1,79 +1,112 @@
+
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
+import './FoodItem.css';
 
 const FoodItem = ({ name, description, id, imageUrl, price }) => {
-  const {increaseQty, decreaseQty, quantities} = useContext(StoreContext);
+  const { increaseQty, decreaseQty, quantities } =
+    useContext(StoreContext);
+
+  const quantity = quantities?.[id] || 0;
 
   const truncateText = (text, maxLength) => {
     if (!text) return '';
     return text.length > maxLength
-      ? text.substring(0, maxLength) + '...'
+      ? `${text.substring(0, maxLength).trim()}...`
       : text;
   };
 
   return (
-    <div className='col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex justify-content-center'>
-      <div  className="card" style={{ maxWidth: "320px"}}>
-        <Link to={`/food/${id}`}><img src={imageUrl} className="card-img-top" alt={name} height={300} /></Link>
-        <div className="card-body">
-          <h5 className="card-title">{name}</h5>
+    <article className="food-card">
+      <Link
+        to={`/food/${id}`}
+        className="food-card-image-link"
+        aria-label={`View ${name}`}
+      >
+        <div className="food-card-image-wrapper">
+          <img
+            src={imageUrl}
+            alt={name}
+            className="food-card-image"
+            loading="lazy"
+          />
 
-          <p className="card-text">
-            {truncateText(description, 80)}
-          </p>
+          <span className="food-card-badge">
+            <i className="bi bi-star-fill"></i> 4.5
+          </span>
+        </div>
+      </Link>
 
-          <div className="d-flex justify-content-between align-items-center">
-            <span className="h5 mb-0">&#8377;{price}</span>
-            <div>
-              <i className="bi bi-star-fill text-warning"></i>
-              <i className="bi bi-star-fill text-warning"></i>
-              <i className="bi bi-star-fill text-warning"></i>
-              <i className="bi bi-star-fill text-warning"></i>
-              <i className="bi bi-star-half text-warning"></i>
-              <small className="text-muted">(4.5)</small>
-            </div>
+      <div className="food-card-content">
+        <div className="food-card-title-row">
+          <h3 className="food-card-title" title={name}>
+            {name}
+          </h3>
+        </div>
+
+        <p className="food-card-description">
+          {truncateText(description, 85)}
+        </p>
+
+        <div className="food-card-rating">
+          <span className="food-card-stars" aria-label="Rated 4.5 out of 5">
+            ★★★★★
+          </span>
+          <span className="food-card-rating-text">
+            (4.5)
+          </span>
+          <span className="food-card-dot">·</span>
+          <span>Fresh & delicious</span>
+        </div>
+
+        <div className="food-card-bottom">
+          <div className="food-card-price">
+            <span className="food-card-currency">₹</span>
+            {price}
           </div>
+
+          {quantity > 0 ? (
+            <div className="food-quantity-control">
+              <button
+                type="button"
+                className="food-quantity-button"
+                onClick={() => decreaseQty(id)}
+                aria-label={`Decrease ${name} quantity`}
+              >
+                <i className="bi bi-dash-lg"></i>
+              </button>
+
+              <span className="food-quantity-number">
+                {quantity}
+              </span>
+
+              <button
+                type="button"
+                className="food-quantity-button"
+                onClick={() => increaseQty(id)}
+                aria-label={`Increase ${name} quantity`}
+              >
+                <i className="bi bi-plus-lg"></i>
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              className="food-add-button"
+              onClick={() => increaseQty(id)}
+              aria-label={`Add ${name} to cart`}
+            >
+              ADD <i className="bi bi-plus-lg"></i>
+            </button>
+          )}
         </div>
 
-        <div className="card-footer d-flex justify-content-between bg-light">
-          <Link className="btn btn-primary btn-sm" to={`/food/${id}`}>
-            View Food
-          </Link>
-         {
-  quantities?.[id] > 0 ? (
-    <div className='d-flex align-items-center gap-2'>
-      <button
-        className='btn btn-danger btn-sm'
-        onClick={() => decreaseQty(id)}
-      >
-        <i className='bi bi-dash-circle'></i>
-      </button>
-
-      <span className='fw-bold'>{quantities?.[id]}</span>
-
-      <button
-        className="btn btn-success btn-sm"
-        onClick={() => increaseQty(id)}
-      >
-        <i className='bi bi-plus-circle'></i>
-      </button>
-    </div>
-  ) : (
-    <button
-      className='btn btn-primary btn-sm'
-      onClick={() => increaseQty(id)}
-    >
-      <i className='bi bi-plus-circle'></i>
-    </button>
-  )
-}
-
-
-        </div>
-
+        <Link to={`/food/${id}`} className="food-card-details-link">
+          View details <i className="bi bi-arrow-right"></i>
+        </Link>
       </div>
-    </div>
+    </article>
   );
 };
 

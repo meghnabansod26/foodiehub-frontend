@@ -1,39 +1,104 @@
-import React from 'react'
-import FoodDisplay from '../../components/FoodDisplay/FoodDisplay'
-import {useState} from 'react'
+
+import React, { useState } from 'react';
+import FoodDisplay from '../../components/FoodDisplay/FoodDisplay';
+import './ExploreFood.css';
 
 const ExploreFood = () => {
-    const [category, setCategory] = useState('All');
-    const [searchText, setSearchText] = useState('');
-  return (
-   <>
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <form onSubmit={(e)=>e.preventDefault()}>
-            <div className="input-group mb-3">
-              <select className='form-select mt-2' style={{'maxWidth':'150px'}} onChange={(e) =>setCategory(e.target.value)}>
-                <option value="All">All</option>
-                <option value="Biryani">Biryani</option>
-                <option value="Burger">Burger</option>
-                <option value="Cake">Cakes</option>
-                <option value="Ice cream">Ice Creams</option>
-                <option value="Pizza">Pizza</option>
-                <option value="Rolls">Rolls</option>
-                <option value="Salad">Salad</option>
-              </select>
-              <input type="text" className='form-control mt-2' placeholder='Search your favourite dish...' onChange={(e)=>setSearchText(e.target.value)} value={searchText}/>
-              <button className='btn btn-primary mt-2' type='submit'>
-                <i className='bi bi-search'></i>
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <FoodDisplay category={category} searchText={searchText}/>
-    </>
-  )
-}
+  const [category, setCategory] = useState('All');
+  const [searchText, setSearchText] = useState('');
 
-export default ExploreFood
+  const categories = [
+    'All',
+    'Biryani',
+    'Burger',
+    'Cake',
+    'Ice cream',
+    'Pizza',
+    'Rolls',
+    'Salad',
+  ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  return (
+    <main className="explore-food-page">
+      <div className="explore-food-container">
+        <section className="explore-food-intro">
+          <span className="explore-food-eyebrow">
+            FIND YOUR FAVOURITE
+          </span>
+
+          <h1>
+            Explore Our <span>Food</span>
+          </h1>
+
+          <p>
+            Discover delicious dishes made to satisfy every craving.
+          </p>
+        </section>
+
+        <form
+          className="explore-search-panel"
+          onSubmit={handleSubmit}
+        >
+          <div className="explore-search-category">
+            <i className="bi bi-grid" />
+
+            <select
+              aria-label="Filter by food category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              {categories.map((item) => (
+                <option key={item} value={item}>
+                  {item === 'Cake'
+                    ? 'Cakes'
+                    : item === 'Ice cream'
+                    ? 'Ice Cream'
+                    : item}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="explore-search-input">
+            <i className="bi bi-search" />
+
+            <input
+              type="search"
+              placeholder="Search your favourite dish..."
+              aria-label="Search food"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+
+            {searchText && (
+              <button
+                type="button"
+                className="explore-clear-button"
+                onClick={() => setSearchText('')}
+                aria-label="Clear search"
+              >
+                <i className="bi bi-x-circle" />
+              </button>
+            )}
+          </div>
+
+          <button className="explore-search-button" type="submit">
+            <i className="bi bi-search" />
+            <span>Search</span>
+          </button>
+        </form>
+
+        <FoodDisplay
+          category={category}
+          searchText={searchText}
+        />
+      </div>
+    </main>
+  );
+};
+
+export default ExploreFood;

@@ -1,17 +1,43 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import './Header.css'
+
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Header.css";
 
 const Header = () => {
   return (
-    <div className='p-5 mb-4 bg-light rounded-3 mt-1 header'>
-        <div className='container-fluid py-5'>
-            <h1 className='display-5 fw-bold'>Order your favourite food here</h1>
-            <p className='col-md-8 fs-4'>Discover the best food and drinks in Pune</p>
-            <Link to="/explore" className='btn btn-primary'>Explore</Link>
-        </div>
-    </div>
-  )
-}
+    <section className="food-header">
+      <div className="food-header-overlay">
+        <div className="container food-header-content">
+          <span className="food-header-tagline">
+            FRESH FLAVOURS, HAPPY MOMENTS
+          </span>
 
-export default Header
+          <h1>
+            Order Your
+            <br />
+            Favourite <span>Food</span> Here
+          </h1>
+
+          <p>
+            Discover delicious food, explore new flavours, and get your
+            favourite meals delivered right to your doorstep.
+          </p>
+
+          <div className="food-header-actions">
+            <Link to="/explore" className="food-explore-btn">
+              Explore Menu
+              <i className="bi bi-arrow-right"></i>
+            </Link>
+
+            <span className="food-header-note">
+              <i className="bi bi-geo-alt-fill"></i>
+              Discover the best food in Pune
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Header;
