@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { StoreContext } from "../../context/StoreContext";
 import "./FoodRecommendationAssistant.css";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const AI_API_URL = `${import.meta.env.VITE_API_URL}/ai/recommendations`;
 
 const QUICK_PROMPTS = [
   {
@@ -87,7 +87,7 @@ export default function FoodRecommendationAssistant() {
 
     try {
       const response = await fetch(
-        `${API_URL}/api/ai/recommendations`,
+        AI_API_URL,
         {
           method: "POST",
           headers: {
