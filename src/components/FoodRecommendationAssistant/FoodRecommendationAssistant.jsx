@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { StoreContext } from "../../context/StoreContext";
 import "./FoodRecommendationAssistant.css";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL= import.meta.env.VITE_API_URL;
 
 const QUICK_PROMPTS = [
   {
@@ -24,6 +24,7 @@ const QUICK_PROMPTS = [
     text: "What can I eat on a budget?",
   },
 ];
+
 
 function normalize(value = "") {
   return value.toLowerCase().replace(/[^a-z0-9]/g, "");
